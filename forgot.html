@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-green-100">
+        <div class="w-full max-w-md px-6">
+            <!-- Initial Form State -->
+            <div id="formState" class="bg-white rounded-2xl shadow-xl p-8">
+                <div class="mb-8 text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-4">
+                        <i data-lucide="mail" class="w-8 h-8 text-emerald-600"></i>
+                    </div>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Forgot Password?</h1>
+                    <p class="text-base text-gray-600">No worries, we'll send you reset instructions.</p>
+                </div>
+
+                <form id="resetForm" class="space-y-6">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                            Email
+                        </label>
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="Enter your email"
+                            required
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg shadow-emerald-200 hover:shadow-emerald-300"
+                    >
+                        Reset Password
+                    </button>
+
+                    <a
+                        href="aivann.html"
+                        class="w-full flex items-center justify-center gap-2 py-3 text-gray-600 hover:text-gray-900 transition-colors"
+                    >
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        Back to login
+                    </a>
+                </form>
+            </div>
+
+            <!-- Success State -->
+            <div id="successState" class="bg-white rounded-2xl shadow-xl p-8 hidden">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-4">
+                        <i data-lucide="check-circle" class="w-8 h-8 text-emerald-600"></i>
+                    </div>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Check your email</h1>
+                    <p class="text-base text-gray-600 mb-6">
+                        We sent a password reset link to<br />
+                        <span id="displayEmail" class="font-semibold text-gray-900"></span>
+                    </p>
+
+                    <a
+                        href="aivann.html"
+                        class="w-full flex items-center justify-center gap-2 py-3 text-gray-600 hover:text-gray-900 transition-colors"
+                    >
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        Back to login
+                    </a>
+
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <p class="text-sm text-gray-500">
+                            Didn't receive the email?
+                            <button
+                                type="button"
+                                id="resendBtn"
+                                class="text-emerald-600 hover:text-emerald-700 font-medium"
+                            >
+                                Click to resend
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Get elements
+        const formState = document.getElementById('formState');
+        const successState = document.getElementById('successState');
+        const resetForm = document.getElementById('resetForm');
+        const emailInput = document.getElementById('email');
+        const displayEmail = document.getElementById('displayEmail');
+        const resendBtn = document.getElementById('resendBtn');
+
+        // Handle form submission
+        resetForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = emailInput.value;
+            displayEmail.textContent = email;
+
+            // Switch states
+            formState.classList.add('hidden');
+            successState.classList.remove('hidden');
+
+            // Re-initialize icons for the new state
+            lucide.createIcons();
+        });
+
+        // Handle resend button
+        resendBtn.addEventListener('click', function() {
+            successState.classList.add('hidden');
+            formState.classList.remove('hidden');
+
+            // Re-initialize icons
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
