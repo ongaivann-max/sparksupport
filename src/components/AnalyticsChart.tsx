@@ -10,7 +10,7 @@ interface AnalyticsData {
   billing: number;
   kva: number;
   kw: number;
-  kwh: number;
+  
   pf: number;
   kvarh_lag: number;
   kvarh_lead: number;
